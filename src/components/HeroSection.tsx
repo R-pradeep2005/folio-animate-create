@@ -1,4 +1,3 @@
-
 import { useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { ParallaxWrapper } from "./ParallaxWrapper";
@@ -23,7 +22,7 @@ export function HeroSection() {
       elements.forEach((el) => {
         const speed = parseFloat(el.getAttribute('data-speed') || '0.05');
         const element = el as HTMLElement;
-        element.style.transform = `translate(${x * 50 * speed}px, ${y * 50 * speed}px)`;
+        element.style.transform = `translate3d(${x * 50 * speed}px, ${y * 50 * speed}px, ${y * 20 * speed}px)`;
       });
     };
     
@@ -38,54 +37,50 @@ export function HeroSection() {
     <section id="home" ref={heroRef} className="relative min-h-screen flex flex-col items-center justify-center pt-20 pb-16 px-6 md:px-12 overflow-hidden">
       {/* Background elements */}
       <div className="absolute inset-0 -z-10">
-        {/* Purple gradient background */}
         <div className="absolute top-0 right-0 w-3/4 h-3/4 bg-designer-primary/5 blur-3xl rounded-full"></div>
         <div className="absolute bottom-0 left-0 w-2/3 h-2/3 bg-designer-secondary/5 blur-3xl rounded-full"></div>
         
-        {/* Decorative elements */}
-        <ParallaxWrapper speed={0.2} direction="up" className="absolute top-20 left-[10%]">
-          <div className="w-32 h-32 rounded-full bg-gradient-to-r from-designer-primary/10 to-designer-secondary/10 blur-xl"></div>
-        </ParallaxWrapper>
+        <div className="parallax-3d-layer" data-speed="0.2">
+          <div className="absolute top-20 left-[10%] w-32 h-32 rounded-full bg-gradient-to-r from-designer-primary/10 to-designer-secondary/10 blur-xl"></div>
+        </div>
         
-        <ParallaxWrapper speed={0.15} direction="down" className="absolute top-32 right-[15%]">
-          <div className="w-48 h-48 rounded-full bg-gradient-to-r from-designer-accent3/10 to-designer-accent2/10 blur-xl"></div>
-        </ParallaxWrapper>
+        <div className="parallax-3d-layer" data-speed="0.15">
+          <div className="absolute top-32 right-[15%] w-48 h-48 rounded-full bg-gradient-to-r from-designer-accent3/10 to-designer-accent2/10 blur-xl"></div>
+        </div>
         
-        <div className="parallax-mouse absolute top-[30%] right-[25%] w-12 h-12 rounded-full bg-gradient-to-r from-designer-primary/30 to-designer-secondary/30 blur-md" data-speed="0.08"></div>
-        <div className="parallax-mouse absolute bottom-[30%] left-[20%] w-16 h-16 rounded-full bg-gradient-to-r from-designer-accent1/20 to-designer-primary/20 blur-md" data-speed="0.1"></div>
+        <div className="parallax-mouse absolute top-[30%] right-[25%] w-12 h-12 rounded-full bg-gradient-to-r from-designer-primary/30 to-designer-secondary/30 blur-md floating-element" data-speed="0.08"></div>
+        <div className="parallax-mouse absolute bottom-[30%] left-[20%] w-16 h-16 rounded-full bg-gradient-to-r from-designer-accent1/20 to-designer-primary/20 blur-md floating-element" data-speed="0.1"></div>
       </div>
 
       <div className="container max-w-7xl mx-auto z-10">
         <div className="flex flex-col items-center text-center">
-          <ScrollReveal direction="up" delay={100}>
+          <div className="scroll-blur-in">
             <Badge variant="gradient" size="lg" className="mb-6">UI Designer & Developer</Badge>
-          </ScrollReveal>
+          </div>
           
-          <ScrollReveal direction="up" delay={200}>
-            <h1 className="text-4xl md:text-6xl xl:text-7xl font-bold mb-6 tracking-tight">
-              Crafting <span className="gradient-text">Digital Experiences</span> 
-              <br />With Purpose & Precision
-            </h1>
-          </ScrollReveal>
+          <h1 className="scroll-rotate-in text-4xl md:text-6xl xl:text-7xl font-bold mb-6 tracking-tight glow-text">
+            Crafting <span className="gradient-text glitch-effect" data-text="Digital Experiences">Digital Experiences</span> 
+            <br />With Purpose & Precision
+          </h1>
           
-          <ScrollReveal direction="up" delay={300}>
+          <div className="reveal-scale">
             <p className="text-lg md:text-xl text-foreground/80 max-w-2xl mb-8">
               I design and develop memorable digital experiences that connect brands with their audience through creative, functional and immersive interfaces.
             </p>
-          </ScrollReveal>
+          </div>
           
-          <ScrollReveal direction="up" delay={400}>
+          <div className="reveal">
             <div className="flex flex-col sm:flex-row items-center gap-4">
-              <Button size="lg" className="bg-designer-primary hover:bg-designer-primary/90 button-glow text-white px-8">
+              <Button size="lg" className="bg-designer-primary hover:bg-designer-primary/90 button-glow text-white px-8 futuristic-border">
                 View My Work
               </Button>
               <Button size="lg" variant="outline" className="border-designer-primary/30 text-designer-primary hover:bg-designer-primary/5">
                 Contact Me
               </Button>
             </div>
-          </ScrollReveal>
+          </div>
 
-          <ScrollReveal direction="up" delay={600} className="mt-16 relative">
+          <div className="mt-16 relative reveal-rotate">
             <div className="relative">
               <div className="absolute -inset-0.5 bg-gradient-to-r from-designer-primary/50 to-designer-secondary/50 rounded-xl blur-xl opacity-50"></div>
               <div className="glass-card relative overflow-hidden rounded-xl border border-white/10 p-2 md:p-4">
@@ -99,7 +94,7 @@ export function HeroSection() {
             
             <div className="parallax-mouse absolute -top-4 -right-4 w-24 h-24 bg-designer-primary/20 rounded-full blur-xl" data-speed="0.05"></div>
             <div className="parallax-mouse absolute -bottom-8 -left-8 w-32 h-32 bg-designer-accent2/10 rounded-full blur-xl" data-speed="0.07"></div>
-          </ScrollReveal>
+          </div>
         </div>
       </div>
       
